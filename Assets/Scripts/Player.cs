@@ -8,13 +8,17 @@ public class Player : MonoBehaviour
     public Animator animator;
 
     public float runSpeed = 40f;
+    public float snowWalkSpeed = 15f;
     private float _horizontalMove = 0f;
     private bool _jump = false;
+    private bool _snowWalking = false;
 
     [SerializeField]
     private int _snowCollected = 0;
     [SerializeField]
     private int _snowCollectedMax = 5;
+
+    private bool _canCollect = true;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +31,12 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        UpdateSnowCollision();
     }
 
     void Move()
     {
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        _horizontalMove = Input.GetAxisRaw("Horizontal") * (_snowWalking ? snowWalkSpeed : runSpeed);
         animator.SetFloat("Speed", Mathf.Abs(_horizontalMove));
     }
 
@@ -49,17 +54,30 @@ public class Player : MonoBehaviour
         animator.SetBool("IsJumping", false);
     }
 
+
     void FixedUpdate()
     {
-        // Move our Character
         controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _jump);
         _jump = false;
+    }
+
+    private void UpdateSnowCollision()
+    {
+        if ((_snowCollected == _snowCollectedMax) && _canCollect)
+        {
+            Physics2D.IgnoreLayerCollision(8, 9, true);
+        }
+        else if (_snowCollected < _snowCollectedMax && !_canCollect)
+        {
+            Physics2D.IgnoreLayerCollision(8, 9, false);
+        }
     }
 
     public void CollectSnow()
     {
         if(_snowCollected <= _snowCollectedMax)
         {
+            _snowWalking = true;
             animator.SetBool("IsCollecting", true);
         }
     }
@@ -67,11 +85,16 @@ public class Player : MonoBehaviour
     public void CollectedSnow()
     {
         _snowCollected++;
+
+        _snowWalking = false;
         animator.SetBool("IsCollecting", false);
     }
 
     public void StopCollectingSnow()
     {
+        _snowWalking = false;
         animator.SetBool("IsCollecting", false);
     }
+
+    
 }

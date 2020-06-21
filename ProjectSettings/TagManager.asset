@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SnowPile
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - 
   - 
   - Player
-  - 
-  - 
+  - Snow
+  - Background
   - 
   - 
   - 
@@ -42,6 +43,12 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
+    uniqueID: 1686738171
+    locked: 0
+  - name: Midground
+    uniqueID: 2959003965
+    locked: 0
+  - name: Player
     uniqueID: 1957718253
     locked: 0
   - name: Foreground

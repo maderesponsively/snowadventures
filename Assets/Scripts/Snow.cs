@@ -5,10 +5,11 @@ using UnityEngine;
 public class Snow : MonoBehaviour
 {
     [SerializeField]
-    private float _waitTime = 1.4f;
+    private float _waitTime = 1.3f;
 
     private bool _collectSnow = false;
     private IEnumerator coroutine;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,7 @@ public class Snow : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player player = collision.transform.GetComponent<Player>();
+            Player player = collision.GetComponent<Player>();
 
             if (player != null)
             {
