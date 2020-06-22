@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SnowPlatform_1
+  m_Name: PlatformSnowPurple_10
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 4084190165145653137, guid: 33492a5514e894e45b0b6cee3704f8cc,
+  m_Sprite: {fileID: -1255131331804179817, guid: 4b173e3b1ea114839bd8742a5e8ce620,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

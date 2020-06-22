@@ -14,16 +14,19 @@ public class Player : MonoBehaviour
     private bool _snowWalking = false;
 
     [SerializeField]
-    private int _snowCollected = 0;
+    private int _snowCollectedMax = 4;
+
     [SerializeField]
-    private int _snowCollectedMax = 5;
+    private int _snowCollected = 0;
 
     private bool _canCollect = true;
+
+    public PlayerSnowBar snowBar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        snowBar.SetMaxSnowLevel(_snowCollectedMax);
     }
 
     // Update is called once per frame
@@ -85,6 +88,10 @@ public class Player : MonoBehaviour
     public void CollectedSnow()
     {
         _snowCollected++;
+
+        Debug.Log(_snowCollected);
+
+        snowBar.SetSnowLevel(_snowCollected);
 
         _snowWalking = false;
         animator.SetBool("IsCollecting", false);

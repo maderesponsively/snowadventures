@@ -1,13 +1,37 @@
 fileFormatVersion: 2
-guid: 33492a5514e894e45b0b6cee3704f8cc
+guid: 907f46bef91114bafbf11eebabb216ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8143246670155747615
-    second: SnowPlatform_0
+      213: 405185694584303013
+    second: SnowBar_Snowman
   - first:
-      213: 4084190165145653137
-    second: SnowPlatform_1
+      213: -1833672415647519404
+    second: SnowBar_Dani
+  - first:
+      213: 4365464881774343195
+    second: SnowBar_Snow
+  - first:
+      213: 6085525086614933537
+    second: SnowBar_Light
+  - first:
+      213: 3699910662191769847
+    second: SnowBar
+  - first:
+      213: 4865844911484204299
+    second: SnowBar_Snowman
+  - first:
+      213: 6717116225413891216
+    second: SnowBar_Dani
+  - first:
+      213: -811142094725387333
+    second: SnowBar_Ice
+  - first:
+      213: -408042171684777645
+    second: SnowBar_Light
+  - first:
+      213: 3699910662191769847
+    second: SnowBar_Bar
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -129,43 +153,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SnowPlatform_0
+      name: SnowBar_Bar
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 100
+        height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f111405a3bf920170800000000000000
-      internalID: 8143246670155747615
+      spriteID: 7f8ee90f429b85330800000000000000
+      internalID: 3699910662191769847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SnowPlatform_1
+      name: SnowBar_Snowman
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 0
+        y: 23
+        width: 26
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19f86a4f055fda830800000000000000
-      internalID: 4084190165145653137
+      spriteID: b057829aa24f68340800000000000000
+      internalID: 4865844911484204299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowBar_Dani
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 26
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 094cec24e9df73d50800000000000000
+      internalID: 6717116225413891216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowBar_Ice
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 30
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbbe68dff8e3eb4f0800000000000000
+      internalID: -811142094725387333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowBar_Light
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 48
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35199578ec7565af0800000000000000
+      internalID: -408042171684777645
       vertices: []
       indices: 
       edges: []
