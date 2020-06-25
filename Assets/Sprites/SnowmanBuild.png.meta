@@ -1,43 +1,103 @@
 fileFormatVersion: 2
-guid: a5e1d6f5255a141a4837c6c38c9193a6
+guid: a9957aed8a24b44bfbebf35e10448f07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6837499329369266318
-    second: SnowPile_0
+      213: -4164932155631119410
+    second: SnowManBuild_0
   - first:
-      213: -6791453668157045258
-    second: SnowPile_1
+      213: 842135092861024246
+    second: SnowManBuild_1
   - first:
-      213: 5697490545372213530
-    second: SnowPile_2
+      213: -6469693078517411879
+    second: SnowManBuild_2
   - first:
-      213: -5099956912309078014
-    second: SnowPile_3
+      213: -5629190470780511027
+    second: SnowManBuild_3
   - first:
-      213: -9170406036601023269
-    second: SnowPile_0
+      213: -129228386551149731
+    second: SnowManBuild_4
   - first:
-      213: 6595813754939615388
-    second: SnowPile_1
+      213: 114744420677998965
+    second: SnowManBuild_5
   - first:
-      213: 1526186991497738843
-    second: SnowPile_2
+      213: -7818696395852610850
+    second: SnowManBuild_6
   - first:
-      213: 334360650971715092
-    second: SnowPile_3
+      213: -7757422683275787196
+    second: SnowManBuild_7
   - first:
-      213: 5954834294792658150
-    second: SnowPile_4
+      213: -2685233734691490657
+    second: SnowManBuild_8
   - first:
-      213: -8959778925839606718
-    second: SnowPile_5
+      213: -5018074642925578001
+    second: SnowManBuild_9
   - first:
-      213: -6630441628634022780
-    second: SnowPile_6
+      213: 4134878086037989396
+    second: SnowManBuild_0
   - first:
-      213: -8687058157703104714
-    second: SnowPile_7
+      213: -4895189294684318947
+    second: SnowManBuild_1
+  - first:
+      213: -1463444366305313758
+    second: SnowManBuild_2
+  - first:
+      213: -7954371293895128879
+    second: SnowManBuild_3
+  - first:
+      213: 7645013983683686851
+    second: SnowManBuild_4
+  - first:
+      213: 5865523586563725458
+    second: SnowManBuild_5
+  - first:
+      213: 8439649038721775649
+    second: SnowManBuild_6
+  - first:
+      213: 1729920154716500131
+    second: SnowManBuild_7
+  - first:
+      213: 5439033598009299433
+    second: SnowManBuild_8
+  - first:
+      213: -8232460406947850268
+    second: SnowManBuild_9
+  - first:
+      213: -4342531493874042840
+    second: SnowManBuild_10
+  - first:
+      213: -782389297766548032
+    second: SnowmanBuild_0
+  - first:
+      213: 957865098278676134
+    second: SnowmanBuild_1
+  - first:
+      213: 771112005536633832
+    second: SnowmanBuild_2
+  - first:
+      213: 5760058487802315472
+    second: SnowmanBuild_3
+  - first:
+      213: -1667029274180276311
+    second: SnowmanBuild_4
+  - first:
+      213: 5114996152639315504
+    second: SnowmanBuild_5
+  - first:
+      213: -6731275340967857947
+    second: SnowmanBuild_6
+  - first:
+      213: -5425995007887048709
+    second: SnowmanBuild_7
+  - first:
+      213: -7677577875423683356
+    second: SnowmanBuild_8
+  - first:
+      213: 4637917182696139425
+    second: SnowmanBuild_9
+  - first:
+      213: 8985699962837416247
+    second: SnowmanBuild_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -79,8 +139,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 7
+  spritePivot: {x: 0.5, y: 0}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -159,13 +219,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SnowPile_0
+      name: SnowmanBuild_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 12
-        width: 22
-        height: 12
+        y: 340
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +233,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd45c4eeb4c2cb080800000000000000
-      internalID: -9170406036601023269
+      spriteID: 0cdbe8634156425f0800000000000000
+      internalID: -782389297766548032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SnowPile_1
+      name: SnowmanBuild_1
       rect:
         serializedVersion: 2
-        x: 22
-        y: 12
-        width: 22
-        height: 12
+        x: 0
+        y: 306
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +254,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c98afcbf9a9098b50800000000000000
-      internalID: 6595813754939615388
+      spriteID: 6a625ad5b350b4d00800000000000000
+      internalID: 957865098278676134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SnowPile_2
+      name: SnowmanBuild_2
       rect:
         serializedVersion: 2
-        x: 44
-        y: 12
-        width: 22
-        height: 12
+        x: 0
+        y: 272
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,20 +275,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5a7b019bfa1e2510800000000000000
-      internalID: 1526186991497738843
+      spriteID: 8e3dc04984a83ba00800000000000000
+      internalID: 771112005536633832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SnowPile_3
+      name: SnowmanBuild_3
       rect:
         serializedVersion: 2
-        x: 66
-        y: 12
-        width: 22
-        height: 12
+        x: 0
+        y: 238
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,20 +296,146 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41699049d33e3a400800000000000000
-      internalID: 334360650971715092
+      spriteID: 0d24ee23da6dfef40800000000000000
+      internalID: 5760058487802315472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SnowPile_4
+      name: SnowmanBuild_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 204
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9afae4a15b58dd8e0800000000000000
+      internalID: -1667029274180276311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 170
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03e5e8186ed1cf640800000000000000
+      internalID: 5114996152639315504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 136
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0b340cdb4b592a0800000000000000
+      internalID: -6731275340967857947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 102
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff79d9d94ef2b4b0800000000000000
+      internalID: -5425995007887048709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec19ff8993c37590800000000000000
+      internalID: -7677577875423683356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 34
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aaa84cda113d5040800000000000000
+      internalID: 4637917182696139425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SnowmanBuild_10
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 22
-        height: 12
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,71 +443,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ec1e65bd32d3a250800000000000000
-      internalID: 5954834294792658150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SnowPile_5
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 0
-        width: 22
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24c9c43b98878a380800000000000000
-      internalID: -8959778925839606718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SnowPile_6
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 0
-        width: 22
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48c7e45e770fbf3a0800000000000000
-      internalID: -6630441628634022780
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SnowPile_7
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 0
-        width: 22
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63772fea1ae517780800000000000000
-      internalID: -8687058157703104714
+      spriteID: 7393a27028e93bc70800000000000000
+      internalID: 8985699962837416247
       vertices: []
       indices: 
       edges: []

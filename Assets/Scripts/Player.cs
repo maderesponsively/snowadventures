@@ -17,16 +17,18 @@ public class Player : MonoBehaviour
     private int _snowCollectedMax = 4;
 
     [SerializeField]
-    private int _snowCollected = 0;
+    private float _snowCollected = 0;
 
     private bool _canCollect = true;
 
-    public PlayerSnowBar snowBar;
+    private UIManager _uIManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        snowBar.SetMaxSnowLevel(_snowCollectedMax);
+        _uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _uIManager.SetPlayerSnowBarMax(_snowCollectedMax);
     }
 
     // Update is called once per frame
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void CollectSnow()
+    public void StartCollectingSnow()
     {
         if(_snowCollected <= _snowCollectedMax)
         {
@@ -87,14 +89,8 @@ public class Player : MonoBehaviour
 
     public void CollectedSnow()
     {
-        _snowCollected++;
-
-        Debug.Log(_snowCollected);
-
-        snowBar.SetSnowLevel(_snowCollected);
-
-        _snowWalking = false;
-        animator.SetBool("IsCollecting", false);
+        _snowCollected = _snowCollected + 0.5f;
+        _uIManager.SetSnowLevel(_snowCollected);
     }
 
     public void StopCollectingSnow()

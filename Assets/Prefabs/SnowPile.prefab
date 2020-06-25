@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 133209925708947263}
   - component: {fileID: 1508473430163756050}
   - component: {fileID: 6666378800747670470}
+  - component: {fileID: -8190510494846727873}
   m_Layer: 0
   m_Name: SnowPile
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -157797251
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: -6791453668157045258, guid: a5e1d6f5255a141a4837c6c38c9193a6,
+  m_Sprite: {fileID: -5099956912309078014, guid: a5e1d6f5255a141a4837c6c38c9193a6,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,4 +123,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3327a95a09742fb9a5bb15c3b96872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waitTime: 2
+  _waitTime: 1.3
+  depleteSnowPile: {fileID: 5954834294792658150, guid: a5e1d6f5255a141a4837c6c38c9193a6,
+    type: 3}
+--- !u!50 &-8190510494846727873
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133209925708947262}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

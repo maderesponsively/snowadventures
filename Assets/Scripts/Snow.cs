@@ -6,9 +6,13 @@ public class Snow : MonoBehaviour
 {
     [SerializeField]
     private float _waitTime = 1.3f;
-
     private bool _collectSnow = false;
+    private float _snowWeight = 1;
+    private float _snowLevel = 1;
+
     private IEnumerator coroutine;
+
+    public Sprite depleteSnowPile;
 
 
     // Start is called before the first frame update
@@ -35,7 +39,7 @@ public class Snow : MonoBehaviour
                 {
                     _collectSnow = true;
 
-                    player.CollectSnow();
+                    player.StartCollectingSnow();
 
                     coroutine = SnowCollectionCoroutine(player);
 
@@ -57,7 +61,6 @@ public class Snow : MonoBehaviour
                 _collectSnow = false;
 
                 player.StopCollectingSnow();
-
                 StopCoroutine(coroutine);
             }
         }
@@ -67,9 +70,19 @@ public class Snow : MonoBehaviour
     {
         while(_collectSnow == true)
         {
-            yield return new WaitForSeconds(_waitTime);
+            if (_snowLevel != _snowWeight / 2)
+            {
+                yield return new WaitForSeconds(_waitTime / 2);
+                _snowLevel = _snowWeight / 2;
+                player.CollectedSnow();
+
+                this.GetComponent<SpriteRenderer>().sprite = depleteSnowPile;
+            }
+
+            yield return new WaitForSeconds(_waitTime / 2);
 
             player.CollectedSnow();
+            player.StopCollectingSnow();
 
             Destroy(this.gameObject);
         }
