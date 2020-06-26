@@ -20,13 +20,13 @@ public class Snowman : MonoBehaviour
 
     private IEnumerator coroutine;
 
-    private UIManager _uIManager;
+    //private UIManager _uIManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        _uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        _uIManager.SetSnowmanSnowBarMax(_snowLevelMax);
+        //_uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        //_uIManager.SetSnowmanSnowBarMax(_snowLevelMax);
     }
 
     // Update is called once per frame
@@ -60,7 +60,7 @@ public class Snowman : MonoBehaviour
     private void UpdateSnowLevel()
     {
         _snowLevel = _snowLevel + _snowIncrement;
-        _uIManager.SetSnowmanSnowBarLevel(_snowLevel);
+        //_uIManager.SetSnowmanSnowBarLevel(_snowLevel);
         UpdateSprite();
         
     }
@@ -69,7 +69,7 @@ public class Snowman : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player player = collision.GetComponent<Player>();
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
 
             if (player != null)
             {
@@ -90,7 +90,7 @@ public class Snowman : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Player player = collision.transform.GetComponent<Player>();
+            PlayerMovement player = collision.transform.GetComponent<PlayerMovement>();
 
             if (player != null)
             {
