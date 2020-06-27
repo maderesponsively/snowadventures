@@ -9,9 +9,11 @@ public class PlayerSnowCollection : MonoBehaviour
     [SerializeField] private float _maxSnow = 3f;
     [SerializeField] private float _currentSnow = 0f;
 
+    public UIPlayerSnowBar snowBar;
+
     void Start()
     {
-        
+        snowBar.SetMaxSnowLevel(_maxSnow);
     }
 
     void Update()
@@ -23,7 +25,9 @@ public class PlayerSnowCollection : MonoBehaviour
     {
         _currentSnow += value;
 
-        if(_currentSnow == _maxSnow)
+        snowBar.SetSnowLevel(_currentSnow);
+
+        if (_currentSnow == _maxSnow)
         {
             isFull = true;
         }

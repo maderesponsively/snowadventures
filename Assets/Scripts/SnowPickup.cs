@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SnowPickup : MonoBehaviour
@@ -11,14 +12,14 @@ public class SnowPickup : MonoBehaviour
     private float _collectionTime = 0.65f;
     [SerializeField]
     private float _decrementalValue = 0.5f;
+    private bool _isCollecting = false;
 
     [SerializeField]
     private Sprite _halfSprite;
-
-    private bool _collecting = false;
-    private IEnumerator _coroutine;
     private PlayerMovement _playerMovement;
     private PlayerSnowCollection _playerSnowCollection;
+
+    IEnumerator _coroutine;
 
     void Start()
     {
@@ -28,7 +29,6 @@ public class SnowPickup : MonoBehaviour
 
         _playerSnowCollection = player.GetComponent<PlayerSnowCollection>();
         _playerMovement = player.GetComponent<PlayerMovement>();
-        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -37,19 +37,35 @@ public class SnowPickup : MonoBehaviour
         {
             if(_playerSnowCollection.isFull == false)
             {
-                _collecting = true;
+                _isCollecting = true;
                 _playerMovement.StartCollecting();
                 _coroutine = PickUpCoroutine();
                 StartCoroutine(_coroutine);
+
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            _collecting = false;
+            if (_playerSnowCollection.isFull == true)
+            {
+                if (_isCollecting == true)
+                {
+                    _isCollecting = false;
+                    StopCoroutine(_coroutine);
+                }
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _isCollecting = false;
             _playerMovement.EndCollecting();
             StopCoroutine(_coroutine);
         }
@@ -57,22 +73,23 @@ public class SnowPickup : MonoBehaviour
 
     IEnumerator PickUpCoroutine()
     {
-
-        while (_collecting == true)
+        while (_isCollecting == true)
         {
             yield return new WaitForSeconds(_collectionTime);
 
-            if (_currentLevel > 0)
+            _currentLevel -= _decrementalValue;
+            _playerSnowCollection.IncrementSnow(_decrementalValue);
+
+            if (_currentLevel < _initialLevel && _currentLevel > 0)
             {
                 this.GetComponent<SpriteRenderer>().sprite = _halfSprite;
-
-                _currentLevel -= _decrementalValue;
-                _playerSnowCollection.IncrementSnow(_decrementalValue);
             }
             else
             {
                 Destroy(this.gameObject);
             }
+
         }
+
     }
 }
