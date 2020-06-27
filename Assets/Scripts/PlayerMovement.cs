@@ -79,6 +79,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void isBuilding(bool value)
     {
-        //animator.SetBool("IsCollecting", value);
+        animator.SetBool("IsBuilding", value);
     }    
 }

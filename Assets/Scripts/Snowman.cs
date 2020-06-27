@@ -48,7 +48,6 @@ public class Snowman : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _buildSnowman = false;
-            _playerMovement.isBuilding(false);
 
             if (_coroutine != null)
             {
@@ -76,18 +75,17 @@ public class Snowman : MonoBehaviour
 
     IEnumerator buildSnowmanCoroutine()
     {
-        bool complete = _snowLevel < _snowLevelMax;
-        bool playerHasSnow = _playerSnowCollection.currentSnow >= _snowIncrement;
-
-        while (_buildSnowman == true && complete && playerHasSnow)
+        while (_buildSnowman && _snowLevel < _snowLevelMax && _playerSnowCollection.currentSnow >= _snowIncrement)
         {
             yield return new WaitForSeconds(waitTime);
 
             _snowLevel += _snowIncrement;
             snowBar.SetSnowLevel(_snowLevel);
             _playerSnowCollection.DecrementSnow(_snowIncrement);
-
+            
             UpdateSprite();
         }
+
+        _playerMovement.isBuilding(false);
     }
 }
