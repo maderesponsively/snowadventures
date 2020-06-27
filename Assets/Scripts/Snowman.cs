@@ -1,118 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System.Collections;
-//using System.Linq;
 
 public class Snowman : MonoBehaviour
 {
     [SerializeField]
-    private float _snowLevelMax = 8f;
+    private float _snowLevelMax = 6f;
     [SerializeField]
     private float _snowLevel = 0f;
-
-    // Can i make this shared?
-    private float _snowIncrement = 0.5f; 
-
-    public Sprite[] buildStepSprites;
-
+    private float _snowIncrement = 0.5f;
+    private float waitTime = 0.65f;
     private bool _buildSnowman = false;
+    private PlayerMovement _playerMovement;
+    private PlayerSnowCollection _playerSnowCollection;
+    
+    private IEnumerator _coroutine;
 
-    private IEnumerator coroutine;
-
-    //private UIManager _uIManager;
-
-    // Start is called before the first frame update
+    public UISnowmanBar snowBar;
+    public Sprite[] buildStepSprites;
+    
     void Start()
     {
-        //_uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        //_uIManager.SetSnowmanSnowBarMax(_snowLevelMax);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        _playerSnowCollection = player.GetComponent<PlayerSnowCollection>();
+        _playerMovement = player.GetComponent<PlayerMovement>();
+
+        snowBar.SetMaxSnowLevel(_snowLevelMax);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-
+        if (other.CompareTag("Player"))
+        {
+            if (_playerSnowCollection.currentSnow >= _snowIncrement)
+            {
+                _buildSnowman = true;
+                _playerMovement.isBuilding(true);
+                _coroutine = buildSnowmanCoroutine();
+                StartCoroutine(_coroutine);
+            }
+        }
     }
 
-    private void UpdateSprite()
+    void OnTriggerExit2D(Collider2D other)
     {
-        float other = buildStepSprites.Length / _snowLevelMax;
+        if (other.CompareTag("Player"))
+        {
+            _buildSnowman = false;
+            _playerMovement.isBuilding(false);
+
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+            }
+        }
+    }
+
+    void UpdateSprite()
+    {
+        float steps = buildStepSprites.Length / _snowLevelMax;
 
         for (int i = 0; i < buildStepSprites.Length; ++i)
         {
-
-            float x = _snowLevel * other;
-            float y = i * other / other;
-            float z = i + 1 * other / other;
+            float x = _snowLevel * steps;
+            float y = i * steps / steps;
+            float z = i + 1 * steps / steps;
 
             if (x >= y && x < z)
             {
                 this.GetComponent<SpriteRenderer>().sprite = buildStepSprites[i];
-
-                Debug.Log("Updating sprite?");
             }
-
         };
     }
 
-
-    private void UpdateSnowLevel()
-    {
-        _snowLevel = _snowLevel + _snowIncrement;
-        //_uIManager.SetSnowmanSnowBarLevel(_snowLevel);
-        UpdateSprite();
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            PlayerMovement player = collision.GetComponent<PlayerMovement>();
-
-            if (player != null)
-            {
-                if (_buildSnowman == false)
-                {
-                    _buildSnowman = true;
-
-                    coroutine = buildSnowmanCoroutine();
-
-                    StartCoroutine(coroutine);
-                }
-
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            PlayerMovement player = collision.transform.GetComponent<PlayerMovement>();
-
-            if (player != null)
-            {
-                _buildSnowman = false;
-
-                StopCoroutine(coroutine);
-            }
-        }
-    }
-
-
     IEnumerator buildSnowmanCoroutine()
     {
-        while (_buildSnowman == true && _snowLevel < _snowLevelMax)
+        bool complete = _snowLevel < _snowLevelMax;
+        bool playerHasSnow = _playerSnowCollection.currentSnow >= _snowIncrement;
+
+        while (_buildSnowman == true && complete && playerHasSnow)
         {
+            yield return new WaitForSeconds(waitTime);
 
-            yield return new WaitForSeconds(0.25f);
+            _snowLevel += _snowIncrement;
+            snowBar.SetSnowLevel(_snowLevel);
+            _playerSnowCollection.DecrementSnow(_snowIncrement);
 
-            UpdateSnowLevel();
+            UpdateSprite();
         }
     }
-
-
-
 }

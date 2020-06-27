@@ -9,7 +9,7 @@ public class SnowPickup : MonoBehaviour
     private float _initialLevel = 1f;
     private float _currentLevel;
     [SerializeField]
-    private float _collectionTime = 0.65f;
+    private float _waitTime = 0.65f;
     [SerializeField]
     private float _decrementalValue = 0.5f;
     private bool _isCollecting = false;
@@ -38,7 +38,7 @@ public class SnowPickup : MonoBehaviour
             if(_playerSnowCollection.isFull == false)
             {
                 _isCollecting = true;
-                _playerMovement.StartCollecting();
+                _playerMovement.isCollecting(true);
                 _coroutine = PickUpCoroutine();
                 StartCoroutine(_coroutine);
 
@@ -46,28 +46,32 @@ public class SnowPickup : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            if (_playerSnowCollection.isFull == true)
-            {
-                if (_isCollecting == true)
-                {
-                    _isCollecting = false;
-                    StopCoroutine(_coroutine);
-                }
-            }
-        }
-    }
+    //void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        if (_playerSnowCollection.isFull == true)
+    //        {
+    //            if (_isCollecting == true)
+    //            {
+    //                _isCollecting = false;
+    //                StopCoroutine(_coroutine);
+    //            }
+    //        }
+    //    }
+    //}
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             _isCollecting = false;
-            _playerMovement.EndCollecting();
-            StopCoroutine(_coroutine);
+            _playerMovement.isCollecting(false);
+
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
+            }
         }
     }
 
@@ -75,7 +79,7 @@ public class SnowPickup : MonoBehaviour
     {
         while (_isCollecting == true)
         {
-            yield return new WaitForSeconds(_collectionTime);
+            yield return new WaitForSeconds(_waitTime);
 
             _currentLevel -= _decrementalValue;
             _playerSnowCollection.IncrementSnow(_decrementalValue);

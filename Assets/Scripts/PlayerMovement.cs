@@ -12,8 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalMove = 0f;
     private bool _jump = false;
 
-
-    private bool _snowWalking = false;
+    //private bool _snowWalking = false;
 
 
 
@@ -60,59 +59,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void OnLanding ()
-    {
-        animator.SetBool("IsJumping", false);
-    }
-
-    public void StartCollecting ()
-    {
-        animator.SetBool("IsCollecting", true);
-    }
-
-    public void EndCollecting()
-    {
-        animator.SetBool("IsCollecting", false);
-    }
-
     void FixedUpdate()
     {
         controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _jump);
         _jump = false;
     }
 
-    //private void UpdateSnowCollision()
-    //{
-    //    if ((_snowCollected == _snowCollectedMax) && _canCollect)
-    //    {
-    //        Physics2D.IgnoreLayerCollision(8, 9, true);
-    //    }
-    //    else if (_snowCollected < _snowCollectedMax && !_canCollect)
-    //    {
-    //        Physics2D.IgnoreLayerCollision(8, 9, false);
-    //    }
-    //}
+    public void OnLanding ()
+    {
+        animator.SetBool("IsJumping", false);
+    }
 
-    //public void StartCollectingSnow()
-    //{
-    //    if(_snowCollected <= _snowCollectedMax)
-    //    {
-    //        _snowWalking = true;
-    //        animator.SetBool("IsCollecting", true);
-    //    }
-    //}
+    public void isCollecting (bool value)
+    {
+        //_snowWalking = value;
+        animator.SetBool("IsCollecting", value);
 
-    //public void CollectedSnow()
-    //{
-    //    _snowCollected = _snowCollected + 0.5f;
-    //    _uIManager.SetSnowLevel(_snowCollected);
-    //}
+    }
 
-    //public void StopCollectingSnow()
-    //{
-    //    _snowWalking = false;
-    //    animator.SetBool("IsCollecting", false);
-    //}
-
-    
+    public void isBuilding(bool value)
+    {
+        //animator.SetBool("IsCollecting", value);
+    }    
 }

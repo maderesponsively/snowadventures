@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPlayerSnowBar : MonoBehaviour
@@ -17,5 +15,4 @@ public class UIPlayerSnowBar : MonoBehaviour
     {
         slider.value = snow;
     }
-
 }

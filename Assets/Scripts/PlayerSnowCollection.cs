@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerSnowCollection : MonoBehaviour
 {
     public bool isFull = false;
 
-    [SerializeField] private float _maxSnow = 3f;
-    [SerializeField] private float _currentSnow = 0f;
+    [SerializeField]
+    private float _maxSnow = 3f;
+    public float currentSnow = 0f;
 
     public UIPlayerSnowBar snowBar;
 
@@ -23,11 +22,11 @@ public class PlayerSnowCollection : MonoBehaviour
 
     public void IncrementSnow(float value)
     {
-        _currentSnow += value;
+        currentSnow += value;
 
-        snowBar.SetSnowLevel(_currentSnow);
+        snowBar.SetSnowLevel(currentSnow);
 
-        if (_currentSnow == _maxSnow)
+        if (currentSnow == _maxSnow)
         {
             isFull = true;
         }
@@ -35,6 +34,11 @@ public class PlayerSnowCollection : MonoBehaviour
 
     public void DecrementSnow(float value)
     {
-        
+        if (currentSnow >= value)
+        {
+            isFull = false;
+            currentSnow -= value;
+            snowBar.SetSnowLevel(currentSnow);
+        }  
     }
 }
