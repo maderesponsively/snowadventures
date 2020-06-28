@@ -48,6 +48,7 @@ public class Snowman : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _buildSnowman = false;
+            _playerMovement.isBuilding(false);
 
             if (_coroutine != null)
             {

@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalMove = 0f;
     private bool _jump = false;
 
+    public ParticleSystem SnowDustParticles;
+
+
     //private bool _snowWalking = false;
 
 
@@ -56,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _jump = true;
             animator.SetBool("IsJumping", true);
+            CreateDust();
         }
     }
 
@@ -70,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
     }
 
+    public void OnFlip()
+    {
+        CreateDust();
+    }
+
     public void isCollecting (bool value)
     {
         //_snowWalking = value;
@@ -80,5 +89,11 @@ public class PlayerMovement : MonoBehaviour
     public void isBuilding(bool value)
     {
         animator.SetBool("IsBuilding", value);
-    }    
+    }
+
+    void CreateDust()
+    {
+        SnowDustParticles.Play();
+    }
+
 }
