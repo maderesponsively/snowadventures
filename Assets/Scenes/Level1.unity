@@ -335,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372543157}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9265451, y: -2.7120805, z: -10}
+  m_LocalPosition: {x: -2.9279852, y: -2.7120805, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 545188861}
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
+  m_ShowCameraFrustum: 0
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
@@ -476,7 +476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545188860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.573455, y: -0.33421946, z: 0}
+  m_LocalPosition: {x: -4.572015, y: -0.33421946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 863610274}
@@ -6135,6 +6135,7 @@ GameObject:
   - component: {fileID: 1501628752}
   - component: {fileID: 1501628744}
   - component: {fileID: 1501628745}
+  - component: {fileID: 1501628746}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -6174,6 +6175,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.4}
   m_Size: {x: 0.45, y: 0.8}
   m_Direction: 0
+--- !u!114 &1501628746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501628743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0dbd83f9bf547a986711d59f25f0b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1501628747
 Rigidbody2D:
   serializedVersion: 4
@@ -6352,7 +6365,6 @@ MonoBehaviour:
   runSpeed: 20
   snowWalkSpeed: 15
   SnowDustParticles: {fileID: 1761184501}
-  SnowSplashParticles: {fileID: 0}
 --- !u!1 &1525054158
 GameObject:
   m_ObjectHideFlags: 0
