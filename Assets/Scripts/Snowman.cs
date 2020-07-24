@@ -36,6 +36,9 @@ public class Snowman : MonoBehaviour
             if (_playerSnowCollection.currentSnow >= _snowIncrement)
             {
                 _buildSnowman = true;
+
+
+                // Replace with accessing animator directly from play animation
                 _playerMovement.isBuilding(true);
                 _coroutine = buildSnowmanCoroutine();
                 StartCoroutine(_coroutine);
@@ -48,6 +51,8 @@ public class Snowman : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _buildSnowman = false;
+
+            // Replace with accessing animator directly from play animation
             _playerMovement.isBuilding(false);
 
             if (_coroutine != null)
@@ -87,6 +92,7 @@ public class Snowman : MonoBehaviour
             UpdateSprite();
         }
 
+        // Replace with accessing animator directly from play animation
         _playerMovement.isBuilding(false);
     }
 }

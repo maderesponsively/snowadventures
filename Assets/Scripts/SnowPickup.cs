@@ -38,6 +38,8 @@ public class SnowPickup : MonoBehaviour
             if(_playerSnowCollection.isFull == false)
             {
                 _isCollecting = true;
+
+                // Replace with accessing animator directly from play animation
                 _playerMovement.isCollecting(true);
                 _coroutine = PickUpCoroutine();
                 StartCoroutine(_coroutine);
@@ -66,6 +68,8 @@ public class SnowPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isCollecting = false;
+
+            // Replace with accessing animator directly from play animation
             _playerMovement.isCollecting(false);
 
             if (_coroutine != null)

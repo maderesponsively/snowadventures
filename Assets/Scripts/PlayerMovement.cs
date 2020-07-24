@@ -15,43 +15,33 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem SnowDustParticles;
 
 
-    //private bool _snowWalking = false;
-
-
-
-    //[SerializeField]
-    //private int _snowCollectedMax = 4;
-
-    //[SerializeField]
-    //private float _snowCollected = 0;
-
-    //private bool _canCollect = true;
-
-    //private UIManager _uIManager;
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        //_uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        //_uIManager.SetPlayerSnowBarMax(_snowCollectedMax);
+     
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
         Jump();
-
-
-        //UpdateSnowCollision();
     }
 
     void Move()
     {
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(_horizontalMove));
+
+        // TODO: Add mobile option. If player is holding down screen and not press left, right or jump.
+
+        // if(!Input.GetMouseButton(0)) {
+            _horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            animator.SetFloat("Speed", Mathf.Abs(_horizontalMove));
+        // } else {
+        //     _horizontalMove = 0;
+        // }
+
+        
     }
+
+    // Disable movement if aiming snowball
 
     void Jump()
     {
@@ -79,21 +69,28 @@ public class PlayerMovement : MonoBehaviour
         CreateDust();
     }
 
+
+    // MOVE TO SNOW PROCESS
     public void isCollecting (bool value)
     {
-        //_snowWalking = value;
         animator.SetBool("IsCollecting", value);
 
     }
 
+    // MOVE TO SNOWMAN PROCESS
     public void isBuilding(bool value)
     {
         animator.SetBool("IsBuilding", value);
     }
 
+
+  
+
     void CreateDust()
     {
         SnowDustParticles.Play();
     }
+
+    
 
 }
