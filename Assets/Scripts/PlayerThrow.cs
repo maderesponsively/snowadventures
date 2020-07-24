@@ -62,32 +62,30 @@ public class PlayerThrow : MonoBehaviour
 
 		_startPoint = _cam.ScreenToViewportPoint(Input.mousePosition);
 
-		trajectory.Show();
+		if(_snowBallClone != null) {
+			trajectory.Show();
+		}
 	}
 
 	private void OnDrag()
 	{
-		if(_snowBallClone != null && _snowBallScript != null) {
+		if(_snowBallClone != null) {
 			_snowBallClone.transform.position = _itemPosition.position;
-		}
 
-        _endPoint = _cam.ScreenToViewportPoint(Input.mousePosition);
-        _distance = Vector2.Distance(_startPoint, _endPoint) * 4;
-        _direction = (_startPoint - _endPoint).normalized;
+			_endPoint = _cam.ScreenToViewportPoint(Input.mousePosition);
+			_distance = Vector2.Distance(_startPoint, _endPoint) * 4;
+			_direction = (_startPoint - _endPoint).normalized;
+			_force = new Vector2(Mathf.Clamp(_direction.x, 0, 1), _direction.y) * _distance * _pushForce;
 
-		var _angleRadian = Mathf.Atan2(_direction.y, _direction.x);
-		var _angleDegree = _angleRadian * Mathf.Rad2Deg;
-
-		//if(_angleDegree >=-90f && _angleDegree <=90f) {
-		if(_snowBallScript != null && (_angleDegree >=-90f && _angleDegree <=90f)) {
-			_force = _direction * _distance * _pushForce;
-        	trajectory.UpdateDots(_itemPosition.position, _force);
+			trajectory.UpdateDots(_itemPosition.position, _force);
+		} else {
+			trajectory.Hide();
 		}
     }
 
 	private void OnDragEnd()
 	{
-		if(_snowBallScript != null) {
+		if(_snowBallClone != null) {
 			_snowBallScript.ActivateRb();
 			_snowBallScript.Push(_force);
 
@@ -103,34 +101,6 @@ public class PlayerThrow : MonoBehaviour
 	}
 }
 
-
-
-		//{
-  //          if (angleDegrees < 90f && angleDegrees >= 60f)
-  //          {
-		//		if(_directionName != "up")
-  //              {
-		//			OnAimUp.Invoke();
-
-		//			_directionName = "up";
-		//		}
-  //          }
-  //          else if (angleDegrees < 60f && angleDegrees >= 40f)
-  //          {
-		//		if (_directionName != "diag")
-		//		{
-		//			OnAimDiag.Invoke();
-
-		//			_directionName = "diag";
-		//		}
-  //          }
-  //          else if (angleDegrees < 40f && angleDegrees >= 0f)
-  //          {
-		//		if(_directionName != "forward")
-  //              {
-		//			OnAimForward.Invoke();
-
-		//			_directionName = "forward";
-		//		}
-  //          }
-  //      }
+// var _angleRadian = Mathf.Atan2(_direction.y, _direction.x);
+// var _angleDegree = _angleRadian * Mathf.Rad2Deg;
+// _angleDegree >=-90f && _angleDegree <=90f ?

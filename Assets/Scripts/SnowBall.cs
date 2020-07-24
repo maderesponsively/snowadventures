@@ -4,7 +4,7 @@ public class SnowBall : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public CircleCollider2D col;
-    [HideInInspector] public Vector3 Position { get { return transform.position; } }
+    //[HideInInspector] public Vector3 Position { get { return transform.position; } }
 
     private void Awake()
 	{
@@ -36,8 +36,6 @@ public class SnowBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		//Debug.Log(collision.gameObject);
-
-		//Destroy(this.gameObject);
+		Destroy(this.gameObject);
 	}
 }
