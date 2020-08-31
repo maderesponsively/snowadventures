@@ -2,33 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SnowPile {
+ 
+    public Sprite fullPile;
+    public Sprite halfPile;
+ 
+}
+
 public class SnowPickup : MonoBehaviour
 {
-    
-    [SerializeField]
-    private float _initialLevel = 1f;
-    private float _currentLevel;
-    [SerializeField]
-    private float _waitTime = 0.65f;
-    [SerializeField]
-    private float _decrementalValue = 0.5f;
+    private float _snowLevel = 1f;
+    [SerializeField] private float _waitTime = 0.65f;
+    [SerializeField] private float _decrementalValue = 0.5f;
     private bool _isCollecting = false;
 
-    [SerializeField]
-    private Sprite _halfSprite;
+    [SerializeField] private Sprite _halfSprite;
     private PlayerMovement _playerMovement;
     private PlayerSnowCollection _playerSnowCollection;
 
+
+
+    private SpriteRenderer snowRender;
+    [SerializeField] private SnowPile[] _snowPile;
+    private int _index;
+
     IEnumerator _coroutine;
+
+    void Awake() {
+        _index = Random.Range(0, _snowPile.Length);
+        snowRender = GetComponent<SpriteRenderer>();
+    }
 
     void Start()
     {
-        _currentLevel = _initialLevel;
-
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         _playerSnowCollection = player.GetComponent<PlayerSnowCollection>();
         _playerMovement = player.GetComponent<PlayerMovement>();
+    }
+
+    void Update()
+    {
+        if (_snowLevel == 1) {
+            snowRender.sprite = _snowPile[_index].fullPile;
+        }
+        if (_snowLevel == 0.5) {
+            snowRender.sprite = _snowPile[_index].halfPile;
+        }
+        if (_snowLevel == 0) {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -47,21 +71,6 @@ public class SnowPickup : MonoBehaviour
             }
         }
     }
-
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        if (_playerSnowCollection.isFull == true)
-    //        {
-    //            if (_isCollecting == true)
-    //            {
-    //                _isCollecting = false;
-    //                StopCoroutine(_coroutine);
-    //            }
-    //        }
-    //    }
-    //}
 
     void OnTriggerExit2D(Collider2D other)
     {
@@ -85,19 +94,13 @@ public class SnowPickup : MonoBehaviour
         {
             yield return new WaitForSeconds(_waitTime);
 
-            _currentLevel -= _decrementalValue;
+            _snowLevel -= _decrementalValue;
             _playerSnowCollection.IncrementSnow(_decrementalValue);
-
-            if (_currentLevel < _initialLevel && _currentLevel > 0)
-            {
-                this.GetComponent<SpriteRenderer>().sprite = _halfSprite;
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
-
         }
+    }
 
+    public void SetSnowLevel(float value)
+    {
+        _snowLevel = value;
     }
 }

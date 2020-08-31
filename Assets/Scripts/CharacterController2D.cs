@@ -31,7 +31,7 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
-	private void Awake()
+	void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
@@ -45,7 +45,7 @@ public class CharacterController2D : MonoBehaviour
 			OnCrouchEvent = new BoolEvent();
 	}
 
-	private void FixedUpdate()
+	void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -64,6 +64,19 @@ public class CharacterController2D : MonoBehaviour
 		}
 	}
 
+	void Flip()
+	{
+		// Switch the way the player is labelled as facing.
+		m_FacingRight = !m_FacingRight;
+
+		// Multiply the player's x local scale by -1.
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
+
+		// Flip event
+		OnFlipEvent.Invoke();
+	}
 
 	public void Move(float move, bool crouch, bool jump)
 	{
@@ -134,20 +147,5 @@ public class CharacterController2D : MonoBehaviour
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
-	}
-
-
-	private void Flip()
-	{
-		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
-
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-
-		// Flip event
-		OnFlipEvent.Invoke();
 	}
 }

@@ -14,12 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
     public ParticleSystem SnowDustParticles;
 
-
-    void Start()
-    {
-     
-    }
-
     void Update()
     {
         Move();
@@ -59,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
         _jump = false;
     }
 
+    void CreateDust()
+    {
+        SnowDustParticles.Play();
+    }
+
     public void OnLanding ()
     {
         animator.SetBool("IsJumping", false);
@@ -68,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
     {
         CreateDust();
     }
-
 
     // MOVE TO SNOW PROCESS
     public void isCollecting (bool value)
@@ -82,15 +80,4 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("IsBuilding", value);
     }
-
-
-  
-
-    void CreateDust()
-    {
-        SnowDustParticles.Play();
-    }
-
-    
-
 }

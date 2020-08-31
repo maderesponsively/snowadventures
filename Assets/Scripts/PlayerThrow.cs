@@ -4,14 +4,14 @@ public class PlayerThrow : MonoBehaviour
 {
 	private Camera _cam;
 	public Animator animator;
-	public GameObject _playerItem;
+	public GameObject playerItem;
 
 	[SerializeField]
 	private Transform _itemPosition;
 	private GameObject _snowBallClone;
+	private PlayerSnowCollection _playSnowCollection;
 	private SnowBall _snowBallScript;
 	public Trajectory trajectory;
-
 
 	[SerializeField]
 	private float _pushForce = 4f;
@@ -22,41 +22,39 @@ public class PlayerThrow : MonoBehaviour
 	private Vector2 _force;
 	private float _distance;
 
+	private bool facingRight = true; 
 
-	//private string _directionName;
-
-    private void Awake()
-    {
-
-	}
-
-	private void Start()
+	void Start()
 	{
 		_cam = Camera.main;
+		_playSnowCollection = GetComponent<PlayerSnowCollection>();
 	}
 
-	private void Update()
+	void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			_isDragging = true;
-			OnDragStart();
-		}
-		if (Input.GetMouseButtonUp(0))
-		{
-			_isDragging = false;
-			OnDragEnd();
-		}
+		if(_playSnowCollection.currentSnow >= 0.5) {
+			if (Input.GetMouseButtonDown(0))
+			{
+				_isDragging = true;
+				OnDragStart();
+			}
+			if (Input.GetMouseButtonUp(0))
+			{
+				_isDragging = false;
+				OnDragEnd();
+			}
 
-		if (_isDragging)
-		{
-			OnDrag();
+			if (_isDragging)
+			{
+				OnDrag();
+			}
 		}
 	}
 
-	private void OnDragStart()
+	void OnDragStart()
 	{
-		_snowBallClone = Instantiate(_playerItem, _itemPosition.position, Quaternion.identity);
+		_snowBallClone = Instantiate(playerItem, _itemPosition.position, Quaternion.identity);
+
 		_snowBallScript = _snowBallClone.GetComponent<SnowBall>();
 		_snowBallScript.DeactivateRb();
 
@@ -67,7 +65,7 @@ public class PlayerThrow : MonoBehaviour
 		}
 	}
 
-	private void OnDrag()
+	void OnDrag()
 	{
 		if(_snowBallClone != null) {
 			_snowBallClone.transform.position = _itemPosition.position;
@@ -75,7 +73,11 @@ public class PlayerThrow : MonoBehaviour
 			_endPoint = _cam.ScreenToViewportPoint(Input.mousePosition);
 			_distance = Vector2.Distance(_startPoint, _endPoint) * 4;
 			_direction = (_startPoint - _endPoint).normalized;
-			_force = new Vector2(Mathf.Clamp(_direction.x, 0, 1), _direction.y) * _distance * _pushForce;
+
+			var xMin = facingRight ? 0 : -1;
+			var xMax = facingRight ? 1 : 0;
+
+			_force = new Vector2(Mathf.Clamp(_direction.x, xMin, xMax), _direction.y) * _distance * _pushForce;
 
 			trajectory.UpdateDots(_itemPosition.position, _force);
 		} else {
@@ -83,7 +85,7 @@ public class PlayerThrow : MonoBehaviour
 		}
     }
 
-	private void OnDragEnd()
+	void OnDragEnd()
 	{
 		if(_snowBallClone != null) {
 			_snowBallScript.ActivateRb();
@@ -97,10 +99,14 @@ public class PlayerThrow : MonoBehaviour
 			}
 		}
 
+		var _snowValue = _playSnowCollection.currentSnow < 1f ? 0.5f : 1;
+		_playSnowCollection.DecrementSnow(_snowValue);
+		_snowBallScript.SetValue(_snowValue);
+
         trajectory.Hide();
 	}
-}
 
-// var _angleRadian = Mathf.Atan2(_direction.y, _direction.x);
-// var _angleDegree = _angleRadian * Mathf.Rad2Deg;
-// _angleDegree >=-90f && _angleDegree <=90f ?
+	public void OnFlip() {
+		facingRight = !facingRight;
+	}
+}

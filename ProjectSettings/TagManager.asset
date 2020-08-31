@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SnowPile
   - PlayerSnowBall
+  - Ground
   layers:
   - Default
   - TransparentFX
