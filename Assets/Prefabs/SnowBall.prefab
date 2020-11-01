@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5721504456012630267}
   m_Layer: 11
   m_Name: SnowBall
-  m_TagString: Untagged
+  m_TagString: Snowball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -139,6 +139,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   col: {fileID: 0}
   snowPile: {fileID: 133209925708947262, guid: a1a69dad81816435f9d559c2ad9bfe58, type: 3}
+  player: {fileID: 0}
 --- !u!96 &5721504456012630267
 TrailRenderer:
   serializedVersion: 2

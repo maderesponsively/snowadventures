@@ -7,7 +7,7 @@ public class PlayerThrow : MonoBehaviour
 	public GameObject playerItem;
 
 	[SerializeField]
-	private Transform _itemPosition;
+	private Transform _itemPosition = null;
 	private GameObject _snowBallClone;
 	private PlayerSnowCollection _playSnowCollection;
 	private SnowBall _snowBallScript;

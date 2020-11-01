@@ -4,10 +4,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class SnowPile {
- 
     public Sprite fullPile;
     public Sprite halfPile;
- 
 }
 
 public class SnowPickup : MonoBehaviour
@@ -21,10 +19,8 @@ public class SnowPickup : MonoBehaviour
     private PlayerMovement _playerMovement;
     private PlayerSnowCollection _playerSnowCollection;
 
-
-
     private SpriteRenderer snowRender;
-    [SerializeField] private SnowPile[] _snowPile;
+    [SerializeField] private SnowPile[] _snowPile = null;
     private int _index;
 
     IEnumerator _coroutine;

@@ -9,9 +9,10 @@ public class SnowBall : MonoBehaviour
 	
 	public GameObject snowPile;
 	public GameObject player;
-	private float _snowValue;
 
-	private GameObject _snowPile;
+	public float snowValue;
+
+	private GameObject _snowPileClone;
 
     void Awake()
 	{
@@ -27,15 +28,16 @@ public class SnowBall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
 		if(collision.gameObject.tag == "Ground") {
-			_snowPile = Instantiate(snowPile, collision.contacts[0].point, Quaternion.identity);
+			_snowPileClone = Instantiate(snowPile, collision.contacts[0].point, Quaternion.identity);
 			
-			SnowPickup snowPickupScript = _snowPile.GetComponent<SnowPickup>();
+			SnowPickup snowPickupScript = _snowPileClone.GetComponent<SnowPickup>();
 
 			if(snowPickupScript != null) {
-				snowPickupScript.SetSnowLevel(_snowValue);
+				snowPickupScript.SetSnowLevel(snowValue);
 			}
-		}
-		Destroy(this.gameObject);
+
+			Destroy(this.gameObject);
+		}	
 	}
 
 	public void Push(Vector2 force)
@@ -45,7 +47,7 @@ public class SnowBall : MonoBehaviour
 
 	public void SetValue(float value)
 	{
-		_snowValue = value;
+		snowValue = value;
 	}
 
 	public void ActivateRb()

@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Trajectory : MonoBehaviour
 {
-	[SerializeField] int dotsNumber;
-	[SerializeField] GameObject dotsParent;
-	[SerializeField] GameObject dotPrefab;
-	[SerializeField] float dotSpacing;
-	[SerializeField] [Range(0.01f, 0.3f)] float dotMinScale;
-	[SerializeField] [Range(0.3f, 1f)] float dotMaxScale;
+	[SerializeField] int dotsNumber = 0;
+	[SerializeField] GameObject dotsParent = null;
+	[SerializeField] GameObject dotPrefab = null;
+	[SerializeField] float dotSpacing = 0;
+	[SerializeField] [Range(0.01f, 0.3f)] float dotMinScale = 0;
+	[SerializeField] [Range(0.3f, 1f)] float dotMaxScale = 0;
 
 	Transform[] dotsList;
 

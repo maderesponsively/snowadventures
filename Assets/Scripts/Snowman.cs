@@ -6,6 +6,7 @@ public class Snowman : MonoBehaviour
 {
     [SerializeField]
     private float _snowLevelMax = 6f;
+
     [SerializeField]
     private float _snowLevel = 0f;
     private float _snowIncrement = 0.5f;
@@ -29,14 +30,25 @@ public class Snowman : MonoBehaviour
         snowBar.SetMaxSnowLevel(_snowLevelMax);
     }
 
+    void Update() {
+        float scale = buildStepSprites.Length / _snowLevelMax;
+
+        for (int i = 0; i < buildStepSprites.Length; ++i)
+        {
+            if( Mathf.Approximately(_snowLevel * scale, ((i + 1) * scale) / scale )) {
+                 this.GetComponent<SpriteRenderer>().sprite = buildStepSprites[i];
+            }
+        };
+
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.tag == "Player")
         {
             if (_playerSnowCollection.currentSnow >= _snowIncrement)
             {
                 _buildSnowman = true;
-
 
                 // Replace with accessing animator directly from play animation
                 _playerMovement.isBuilding(true);
@@ -44,6 +56,21 @@ public class Snowman : MonoBehaviour
                 StartCoroutine(_coroutine);
             }
         }
+
+        if (other.gameObject.tag == "Snowball")
+        {
+            SnowBall snowBall = other.GetComponent<SnowBall>();
+
+            if(snowBall != null && _snowLevel < _snowLevelMax)
+            {
+                _snowLevel += snowBall.snowValue;
+                snowBar.SetSnowLevel(_snowLevel);
+                Destroy(other.gameObject);
+            }
+        }
+
+        // if tag show ball
+        // check the snowball value then update snowlevel
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -62,22 +89,6 @@ public class Snowman : MonoBehaviour
         }
     }
 
-    void UpdateSprite()
-    {
-        float steps = buildStepSprites.Length / _snowLevelMax;
-
-        for (int i = 0; i < buildStepSprites.Length; ++i)
-        {
-            float x = _snowLevel * steps;
-            float y = i * steps / steps;
-            float z = i + 1 * steps / steps;
-
-            if (x >= y && x < z)
-            {
-                this.GetComponent<SpriteRenderer>().sprite = buildStepSprites[i];
-            }
-        };
-    }
 
     IEnumerator buildSnowmanCoroutine()
     {
@@ -88,8 +99,6 @@ public class Snowman : MonoBehaviour
             _snowLevel += _snowIncrement;
             snowBar.SetSnowLevel(_snowLevel);
             _playerSnowCollection.DecrementSnow(_snowIncrement);
-            
-            UpdateSprite();
         }
 
         // Replace with accessing animator directly from play animation
